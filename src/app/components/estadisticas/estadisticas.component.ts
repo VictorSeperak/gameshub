@@ -1,3 +1,10 @@
+//Respuesta 1: import { Juego } from '../../interfaces/juego.interface';
+//Respuesta 2: src/app/components/lista-juegos/lista-juegos.component.ts
+//Respuesta 3: en el main
+//Respuesta 4: Porque estamos usando Standalone
+//Respuesta 5: Porque nos ayuda a mantener filtros, sesiones, configuraciones o cualquier tipo de estado compartido en toda la app.
+
+
 import { Component, OnInit } from '@angular/core';
 import { JuegosDataService } from '../../services/juegos-data.service';
 import { Juego } from '../../interfaces/juego.interface';

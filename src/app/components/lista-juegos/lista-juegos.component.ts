@@ -91,6 +91,22 @@ export class ListaJuegosComponent implements OnInit {
           resultado = resultado.filter(juego => juego.rating >= filtros.rating);
         }
         
+        // Ordenamiento
+  switch (filtros.orden) {
+  case 'precio-asc':
+    resultado = resultado.sort((a, b) => a.precio - b.precio);
+    break;
+  case 'precio-desc':
+    resultado = resultado.sort((a, b) => b.precio - a.precio);
+    break;
+  case 'rating-desc':
+    resultado = resultado.sort((a, b) => b.rating - a.rating);
+    break;
+  case 'az':
+    resultado = resultado.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    break;
+}
+
         this.mostrandoResultados = resultado.length;
         return resultado;
       })
@@ -109,22 +125,28 @@ export class ListaJuegosComponent implements OnInit {
   }
   
   limpiarFiltros(): void {
-    this.terminoBusqueda = '';
-    this.categoriaSeleccionada = '';
-    this.filtrosSubject.next({
-      busqueda: '',
-      categoria: '',
-      plataforma: '',
-      precio: '',
-      rating: 0
-    });
-  }
+  this.terminoBusqueda = '';
+  this.categoriaSeleccionada = '';
+  this.ordenSeleccionado = '';
+  this.filtrosSubject.next({
+    busqueda: '',
+    categoria: '',
+    plataforma: '',
+    precio: '',
+    rating: 0,
+    orden: ''
+  });
+}
+
   
   private actualizarFiltros(): void {
-    this.filtrosSubject.next({
-      ...this.filtrosSubject.value,
-      busqueda: this.terminoBusqueda,
-      categoria: this.categoriaSeleccionada
-    });
-  }
+  this.filtrosSubject.next({
+    ...this.filtrosSubject.value,
+    busqueda: this.terminoBusqueda,
+    categoria: this.categoriaSeleccionada,
+    orden: this.ordenSeleccionado
+  });
+}
+
+  ordenSeleccionado = '';
 }
