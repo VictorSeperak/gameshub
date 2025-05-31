@@ -1,15 +1,55 @@
-<p>estadisticas works!</p>
-<!-- Header -->
-<section class="categories-header py-5 bg-darker">
-  <div class="container">
-    <div class="row justify-content-center text-center">
-      <div class="col-lg-8">
-        <h1 class="title-gaming mb-4">Categorías de Juegos</h1>
-        <p class="lead text-secondary">
-          Explora nuestra colección organizada por géneros gaming. 
-          Desde intensos Battle Royale hasta creativos mundos Sandbox.
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">📊 Estadísticas de Juegos</h2>
+
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-3">
+      <div class="card text-bg-dark shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Total de Juegos</h5>
+          <p class="card-text display-6">{{ totalJuegos }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+      <div class="card text-bg-success shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Juegos Gratuitos</h5>
+          <p class="card-text display-6">{{ juegosGratis }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+      <div class="card text-bg-primary shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Juegos de Pago</h5>
+          <p class="card-text display-6">{{ juegosDePago }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+      <div class="card text-bg-warning shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Precio Promedio</h5>
+          <p class="card-text display-6">{{ promedioPrecios | currency:'PEN' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-5 shadow">
+    <div class="card-body">
+      <h5 class="card-title">🎮 Juego con Mejor Rating</h5>
+      <div *ngIf="juegoConMejorRating">
+        <h6>{{ juegoConMejorRating.nombre }}</h6>
+        <p>Rating: {{ juegoConMejorRating.rating | number:'1.1-1' }}</p>
+        <p>Precio: 
+          <span *ngIf="juegoConMejorRating.esGratis">Gratis</span>
+          <span *ngIf="!juegoConMejorRating.esGratis">{{ juegoConMejorRating.precio | currency:'PEN' }}</span>
         </p>
       </div>
     </div>
   </div>
-</section>
+</div>
